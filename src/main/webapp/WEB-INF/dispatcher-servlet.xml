@@ -12,7 +12,7 @@
 
 <mvc:annotation-driven>     </mvc:annotation-driven>
        <context:component-scan base-package="com.shestakam.controllers"></context:component-scan>
-       <context:component-scan base-package="com.shestakam.controllers"></context:component-scan>
+
        <bean id="viewResolver"
              class="org.springframework.web.servlet.view.InternalResourceViewResolver" >
               <property name="prefix">
@@ -22,5 +22,36 @@
                      <value>.jsp</value>
               </property>
        </bean>
+
+    <bean id="messageSource"
+          class="org.springframework.context.support.ResourceBundleMessageSource">
+        <property name="basename" value="mes.messages" />
+        <property name="defaultEncoding" value="UTF-8" />
+    </bean>
+
+    <bean id="localeResolver"
+          class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
+        <property name="defaultLocale" value="de" />
+        <property name="cookieName" value="myCookieLanguage"/>
+        <property name="cookieMaxAge" value="1"/>
+    </bean>
+
+
+    <!--to change language by ?language=en-->
+    <!--<bean id="localeResolver"
+          class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
+        <property name="defaultLocale" value="en" />
+    </bean>-->
+
+
+    <mvc:interceptors>
+        <bean id="localeChangeInterceptor"
+              class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+            <property name="paramName" value="language" />
+        </bean>
+    </mvc:interceptors>
+
+    <mvc:resources mapping="/resources/**" location="/resources/"
+                   cache-period="10000"/>
 
 </beans>
