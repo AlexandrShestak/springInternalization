@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <users login="eric" password="13567" first_name="Qwert" last_name="Yuiop" language="RU"/>
+    <users login="fler" password="135907" first_name="Fler" last_name="Delakur" language="EN"/>
+    <users login="dark" password="12345678" first_name="Alex" last_name="Mac" language="EN"/>
+</dataset>

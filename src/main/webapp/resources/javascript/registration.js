@@ -17,9 +17,9 @@ $(document).ready(function(){
 
             },
             success : function(data){
- $(document).load(data)
 
                 $('html').html(data);
+
 
             }
         });

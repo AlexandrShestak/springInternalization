@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 
 <html>
@@ -8,7 +9,6 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/javascript/registration.js"></script>
 </head>
 <body>
-<h2>Hello World!</h2>
 <form action="hello">
     <input type="submit">
 </form>
@@ -23,7 +23,7 @@
                 <spring:message code="messages.login"/>
             </td>
             <td>
-                <input id="login" type="text">
+                <input id="login" type="text" value="${cookie.login.value}">
             </td>
         </tr>
 
@@ -41,10 +41,15 @@
                 <spring:message code="messages.lang"/>
             </td>
             <td>
-                <select id="language">
-                    <option value="EN">English</option>
-                    <option value="RU">Russian</option>
-                    <option value="DE">Deutch</option>
+                <select id="language" >
+                 <%--   <option  value="EN">English</option>
+                    <option  value="RU">Russian</option>
+                    <option  value="DE">Deutch</option>
+--%>
+
+                 <option <c:if test="${'EN' eq cookie.myCookieLanguage.value}">selected="selected" </c:if>  value="EN">English</option>
+                    <option <c:if test="${'RU' eq cookie.myCookieLanguage.value}">selected="selected" </c:if>  value="RU">Russian</option>
+                    <option <c:if test="${'DE' eq cookie.myCookieLanguage.value}">selected="selected" </c:if>  value="DE">Deutch</option>
                     <option value="empty"></option>
                 </select>
             </td>
@@ -65,8 +70,7 @@
 
     </table>
 </form>
+${error}
 
-<spring:message code="messages.welcomeToApplication"/>
-<spring:message code="messages.welcome"/>
 </body>
 </html>
